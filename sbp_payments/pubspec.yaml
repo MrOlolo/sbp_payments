@@ -1,0 +1,31 @@
+name: sbp_payments
+description: Flutter plugin which helps to handle sbp payment links and open it with specific bank app
+repository: https://github.com/MrOlolo/sbp_payments/tree/master/sbp_payments
+version: 0.0.1
+homepage: https://github.com/MrOlolo/sbp_payments
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.20.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sbp_platform_interface: ^0.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  # This section identifies this Flutter project as a plugin project.
+  # The 'pluginClass' and Android 'package' identifiers should not ordinarily
+  # be modified. They are used by the tooling to maintain consistency when
+  # adding or updating assets for this project.
+  plugin:
+    platforms:
+      android:
+        package: com.mrololo.sbp_payments
+        pluginClass: SbpPaymentsPlugin
+      ios:
+        pluginClass: SbpPaymentsPlugin
