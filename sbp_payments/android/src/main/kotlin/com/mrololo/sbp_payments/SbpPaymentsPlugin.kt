@@ -39,8 +39,12 @@ class SbpPaymentsPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         if (call.method == "showBanks") {
-//            SbpUtils.getInstance().showSbpListDialog(context, call.argument<String>("url"))
-            result.success(true)
+            if (activity != null) {
+                SbpUtils.getInstance().showSbpListDialog(activity, call.argument<String>("url"))
+                result.success(true)
+            } else {
+                result.success(false)
+            }
         } else if (call.method == "openWithBank") {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(call.argument<String>("url")!!)
