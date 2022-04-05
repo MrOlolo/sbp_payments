@@ -1,7 +1,7 @@
 name: sbp_platform_interface
 description: A common platform interface for sbp_payments
 repository: https://github.com/MrOlolo/sbp_payments/tree/master/sbp_platform_interface
-version: 0.0.1
+version: 0.0.2
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  plugin_platform_interface: ^2.0.1
+  plugin_platform_interface: ^2.1.2
 
 dev_dependencies:
   flutter_test:

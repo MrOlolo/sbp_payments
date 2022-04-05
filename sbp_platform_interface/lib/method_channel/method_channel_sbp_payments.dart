@@ -20,4 +20,17 @@ class MethodChannelSbpPayments extends SbpPaymentsPlatform {
       <String, Object>{'url': url, 'scheme': bankScheme},
     ).then((value) => value ?? false);
   }
+
+  @override
+  Future<bool> showBanksCustom(String url,
+      {required int backgroundCode, required int textCode}) {
+    return _channel.invokeMethod<bool>(
+      'showBanksCustom',
+      <String, Object>{
+        'url': url,
+        'background': backgroundCode,
+        'text': textCode
+      },
+    ).then((value) => value ?? false);
+  }
 }
