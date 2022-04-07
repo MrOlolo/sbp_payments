@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:sbp_platform_interface/sbp_platform_interface.dart';
 
 class SbpPayments {
-
   /// Returns true if launch bank chooser widget is successful.
   static Future<bool> showBanks(String url) async {
     final Uri uri = Uri.parse(url.trimLeft());
@@ -13,7 +12,7 @@ class SbpPayments {
       throw PlatformException(
           code: 'NOT_A_WEB_SCHEME',
           message:
-          'You need to pass in a web URL. This $url is not a web URL.');
+              'You need to pass in a web URL. This $url is not a web URL.');
     }
     return SbpPaymentsPlatform.instance.showBanks(url);
   }
@@ -26,8 +25,26 @@ class SbpPayments {
       throw PlatformException(
           code: 'NOT_A_WEB_SCHEME',
           message:
-          'You need to pass in a web URL. This $url is not a web URL.');
+              'You need to pass in a web URL. This $url is not a web URL.');
     }
     return SbpPaymentsPlatform.instance.openWithBank(bankScheme, url);
+  }
+
+  /// Returns true if launch bank chooser widget is successful.
+  static Future<bool> showBanksCustom(String url,
+      {required int backgroundColorCode, required int textColorCode}) async {
+    final Uri uri = Uri.parse(url.trimLeft());
+    final bool isWebURL = uri.scheme == 'http' || uri.scheme == 'https';
+    if (!isWebURL) {
+      throw PlatformException(
+          code: 'NOT_A_WEB_SCHEME',
+          message:
+              'You need to pass in a web URL. This $url is not a web URL.');
+    }
+    return SbpPaymentsPlatform.instance.showBanksCustom(
+      url,
+      backgroundCode: backgroundColorCode,
+      textCode: textColorCode,
+    );
   }
 }

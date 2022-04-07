@@ -1,7 +1,7 @@
 name: sbp_payments
 description: Flutter plugin which helps to handle sbp payment links and open it with specific bank app
 repository: https://github.com/MrOlolo/sbp_payments/tree/master/sbp_payments
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/MrOlolo/sbp_payments
 
 environment:
@@ -11,7 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sbp_platform_interface: ^0.0.1
+  sbp_platform_interface: ^0.0.2
+#  sbp_platform_interface:
+#    path: ../sbp_platform_interface
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,5 @@
 import Flutter
-import SBPWidget
+import SBPPayment
 import UIKit
 
 public class SwiftSbpPaymentsPlugin: NSObject, FlutterPlugin {
@@ -11,30 +11,70 @@ public class SwiftSbpPaymentsPlugin: NSObject, FlutterPlugin {
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
-            case "showBanks":
-                if let topController = getTopViewController() {
-                    SBPWidgetModule().show(on: topController) { scheme in
-                        let args = call.arguments as! [String: Any]
-                        let link = args["url"] as! String
-                        _ = self.openLinkWithBank(link, scheme)
+        case "showBanks":
+            if let topController = getTopViewController() {
+                SBPWidgetModule().show(on: topController) { res in
+                    switch res {
+                    case .success(let scheme):
+                        if let bankScheme = scheme {
+                            let args = call.arguments as! [String: Any]
+                            let link = args["url"] as! String
+                            _ = self.openLinkWithBank(link, bankScheme)
+                            result(true)
+                        } else {
+                            result(false)
+                        }
+
+                    case .failure:
+                        result(false)
                     }
-                    result(true)
+                }
+
+            } else {
+                result(false)
+            }
+
+        case "openWithBank":
+            if let args = call.arguments as? [String: Any] {
+                let link = args["url"] as! String
+                let scheme = args["scheme"] as! String
+                result(self.openLinkWithBank(link, scheme))
+
+            } else {
+                result(false)
+            }
+
+        case "showBanksCustom":
+            if let args = call.arguments as? [String: Any] {
+                let textColor = args["text"] as! Int
+                let backgroundColor = args["background"] as! Int
+
+                if let topController = getTopViewController() {
+                    SBPWidgetModule().show(on: topController, backgroundColor: backgroundColor, textColor: textColor) { res in
+                        switch res {
+                        case .success(let scheme):
+                            if let bankScheme = scheme {
+                                let args = call.arguments as! [String: Any]
+                                let link = args["url"] as! String
+                                _ = self.openLinkWithBank(link, bankScheme)
+                                result(true)
+                            } else {
+                                result(false)
+                            }
+
+                        case .failure:
+                            result(false)
+                        }
+                    }
+
                 } else {
                     result(false)
                 }
-
-            case "openWithBank":
-                if let args = call.arguments as? [String: Any] {
-                    let link = args["url"] as! String
-                    let scheme = args["scheme"] as! String
-                    result(self.openLinkWithBank(link, scheme))
-
-                } else {
-                    result(false)
-                }
-
-            default:
-                result(FlutterMethodNotImplemented)
+            } else {
+                result(false)
+            }
+        default:
+            result(FlutterMethodNotImplemented)
         }
     }
 
@@ -52,8 +92,6 @@ public class SwiftSbpPaymentsPlugin: NSObject, FlutterPlugin {
 
     private func openLinkWithBank(_ link: String, _ bankScheme: String) -> Bool {
         let url = URL(string: link.replacingOccurrences(of: "https://", with: "\(bankScheme)://").replacingOccurrences(of: "http://", with: "\(bankScheme)://"))!
-        print(link)
-        print(url)
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
             return true

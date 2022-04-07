@@ -1,9 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - sbp_payments (0.0.1):
+  - sbp_payments (0.0.2):
     - Flutter
-    - SBPWidget
-  - SBPWidget (1.0.1)
+    - SBPPayment
+  - SBPPayment (1.3.1)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -11,7 +11,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - SBPWidget
+    - SBPPayment
 
 EXTERNAL SOURCES:
   Flutter:
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sbp_payments/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  sbp_payments: d5a1fb49dfd129801cdd0457c4553d3abd1d707b
-  SBPWidget: 8c8919ae2b3bc8a7ecf41e278182e516136f4c62
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  sbp_payments: 1571c60dc319216a1d30aa8a805b3a771af1eb32
+  SBPPayment: 7ccfaf259e8d4a6c1468823156328aa45e2f6b6d
 
-PODFILE CHECKSUM: af6b891fb448119e2e3d0a226fcad7567aa13204
+PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

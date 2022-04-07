@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'sbp_payments'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'Flutter plugin which helps to handle sbp payment links and open it with specific bank app'
   s.description      = <<-DESC
 Flutter plugin which helps to handle sbp payment links and open it with specific bank app
@@ -15,10 +15,10 @@ Flutter plugin which helps to handle sbp payment links and open it with specific
   s.source           = { :path => '.'}
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.platform = :ios, '10.0'
+  s.platform = :ios, '13.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
-  s.dependency 'SBPWidget'
+  s.dependency 'SBPPayment'
 end

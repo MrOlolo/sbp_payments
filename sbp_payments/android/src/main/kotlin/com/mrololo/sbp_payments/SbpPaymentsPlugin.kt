@@ -66,6 +66,16 @@ class SbpPaymentsPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
             }
 
 
+        } else if (call.method == "showBanksCustom") {
+            if (activity != null) {
+                SbpUtils.getInstance().showSbpListDialog(activity,
+                        call.argument<String>("url"),
+                        call.argument<Int>("text")!!,
+                        call.argument<Int>("background")!!)
+                result.success(true)
+            } else {
+                result.success(false)
+            }
         } else {
             result.notImplemented()
 

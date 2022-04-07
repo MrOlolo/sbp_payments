@@ -1,8 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'dart:async';
-
 import 'package:flutter/services.dart';
 import 'package:sbp_payments/sbp_payments.dart';
 
@@ -26,6 +25,18 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       res = await SbpPayments.showBanks(_sbpLinkExample);
+      print('chooseBankForPayment: status $res');
+    } on PlatformException catch (e) {
+      print('Failed to open sbp widget. $e');
+    }
+  }
+
+  Future<void> chooseBankForPaymentCustom() async {
+    bool? res;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      res = await SbpPayments.showBanksCustom(_sbpLinkExample,
+          backgroundColorCode: 0xFF291970, textColorCode: 0xFFFFFFFF);
       print('chooseBankForPayment: status $res');
     } on PlatformException catch (e) {
       print('Failed to open sbp widget. $e');
@@ -67,6 +78,11 @@ class _MyAppState extends State<MyApp> {
                   await chooseBankForPayment();
                 },
                 child: Text('Choose bank and pay')),
+            TextButton(
+                onPressed: () async {
+                  await chooseBankForPaymentCustom();
+                },
+                child: Text('Choose bank and pay with custom settings')),
             TextButton(
                 onPressed: () async {
                   await openPaymentWithBank();
