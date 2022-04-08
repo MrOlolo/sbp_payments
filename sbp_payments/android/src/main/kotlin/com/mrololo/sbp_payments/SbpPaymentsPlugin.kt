@@ -15,6 +15,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
+import payments.sbp.Callback
 
 import payments.sbp.SbpUtils
 
@@ -40,8 +41,9 @@ class SbpPaymentsPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         if (call.method == "showBanks") {
             if (activity != null) {
-                SbpUtils.getInstance().showSbpListDialog(activity, call.argument<String>("url"))
-                result.success(true)
+                SbpUtils.getInstance().showSbpListDialog(activity, call.argument<String>("url")) {
+                    result.success(it);
+                }
             } else {
                 result.success(false)
             }
@@ -71,8 +73,9 @@ class SbpPaymentsPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 SbpUtils.getInstance().showSbpListDialog(activity,
                         call.argument<String>("url"),
                         call.argument<Int>("text")!!,
-                        call.argument<Int>("background")!!)
-                result.success(true)
+                        call.argument<Int>("background")!!) {
+                    result.success(it);
+                }
             } else {
                 result.success(false)
             }

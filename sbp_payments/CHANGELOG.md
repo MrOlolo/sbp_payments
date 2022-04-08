@@ -5,3 +5,7 @@
 ## 0.0.2
 
 * Implements color modification
+
+## 0.0.3
+
+* Update android lib to support dialog callback
