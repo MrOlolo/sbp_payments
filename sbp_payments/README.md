@@ -26,6 +26,9 @@ Add URL schemes as `LSApplicationQueriesSchemes` entries in your `Info.plist` fi
     <string>bank100000001000</string>
   </array>
 ```
+
+<b>Warning!</b> Starting with iOS 15 there's limit in maximum 50 entries in list, so you probably need to take first 50 entries from [c2bmembers.json](https://qr.nspk.ru/proxyapp/c2bmembers.json). Look for details [here](https://developer.apple.com/documentation/uikit/uiapplication/1622952-canopenurl#discussion).
+
 That's need for UIApplication.shared.canOpenURL method worked correctly. You can copy and paste all lines from [example](https://github.com/MrOlolo/sbp_payments/blob/db6da2b2f31af67fd4d00c4a0ada37e378bc984e/sbp_payments/example/ios/Runner/Info.plist#L44).
 
 See [`-[UIApplication canOpenURL:]`](https://developer.apple.com/documentation/uikit/uiapplication/1622952-canopenurl) for more details.
